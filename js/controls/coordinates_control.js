@@ -24,6 +24,18 @@ export var CoordinatesControl = L.Control.extend({
 
         L.DomEvent.on(this._map, 'mousemove', this._setMousePositionCoordinates, this);
 
+        var url_string = window.location.href; //window.location.href
+        var url = new URL(url_string);
+        var x = url.searchParams.get("x");
+        var y = url.searchParams.get("y");
+        var z = url.searchParams.get("z");
+        if (x && y && z) {
+            this._xCoordInput.value = x;
+            this._yCoordInput.value = y;
+            this._zCoordInput.value = z;
+            this._goToCoordinates();
+        }
+
         return container;
     },
 
